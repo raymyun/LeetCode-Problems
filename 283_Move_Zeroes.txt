@@ -1,0 +1,12 @@
+https://leetcode.com/problems/move-zeroes/submissions/1154149076?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        listSize = len(nums)
+        for i in range(listSize):
+            if nums[i] == 0:
+                nums.insert(listSize, nums[i])
+                nums.remove(nums[i])
