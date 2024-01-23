@@ -1,0 +1,41 @@
+https://leetcode.com/problems/maximum-average-subarray-i/submissions/1154264403?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        """
+        # Below is my solution with O(n^2) runtime
+        # Not fast enough
+        numWindows = len(nums) - k + 1
+        avg = 0.0
+        tempSum = 0
+        tempk = k
+        tempMax = 0.0
+
+        #Base Case
+        if len(nums) == 1:
+            return nums[0]
+
+        for i in range(numWindows):
+            tempSum = sum(nums[i:tempk])
+            avg = tempSum/k
+            tempk += 1
+            if (i == 0):
+                tempMax = avg
+            else:
+                tempMax = max(avg, tempMax)
+
+        return tempMax
+        """
+
+        #Below is the optimal solution with O(n) runtime
+        currSum = maxSum = sum(nums[:k])
+
+        for i in range(k, len(nums)):
+            #Add the contiguous right elemennt
+            currSum += nums[i]
+            #Subtract the left element
+            currSum -= nums[i-k]
+
+            maxSum = max(maxSum, currSum)
+        
+        return maxSum/k
