@@ -1,0 +1,16 @@
+https://leetcode.com/problems/find-the-highest-altitude/submissions/1154287149?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        prefixSum = [0]
+        nextSum = 0
+
+        #Below is my implementation utilizing prefixSumArray (much slower)
+        #for i in range(1, len(gain)+1):
+            #nextSum = prefixSum[i-1] + gain[i-1]
+        #Below is solution code influenced, (doesn't really utilize prefixsum but is faster)
+        for i in range(len(gain)):
+            nextSum += gain[i]
+            prefixSum.append(nextSum)
+        
+        return max(prefixSum)
