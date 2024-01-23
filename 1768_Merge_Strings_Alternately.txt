@@ -1,0 +1,44 @@
+https://leetcode.com/problems/merge-strings-alternately/submissions/1154153254?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        # Below is my own solution
+        word1size = len(word1)
+        word2size = len(word2)
+        mergedStr = ""
+
+        if word1size < word2size:
+            smallerSize = word1size
+            biggerSize = word2size
+            word2Bigger = True
+        else:
+            smallerSize = word2size
+            biggerSize = word1size
+            word2Bigger = False
+
+        for i in range(smallerSize):
+            mergedStr += word1[i]
+            mergedStr += word2[i]
+
+        if word2Bigger:
+            for i in range(smallerSize, biggerSize):
+                mergedStr += word2[i]
+        else:
+            for i in range(smallerSize, biggerSize):
+                mergedStr += word1[i]
+
+        print(mergedStr)
+        return mergedStr
+
+        """
+        # Below is the Solution Code that is more compact and efficient
+        result = []
+        i = 0
+        while i < len(word1) or i < len(word2):
+            if i < len(word1):
+                result.append(word1[i])
+            if i < len(word2):
+                result.append(word2[i])
+            i += 1
+        return ''.join(result)
+        """
