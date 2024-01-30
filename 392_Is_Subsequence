@@ -1,0 +1,18 @@
+https://leetcode.com/problems/is-subsequence/submissions/1160737688?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        s_pointer = 0
+
+        #Base Case if s is empty
+        if s == "":
+            return True
+
+        #Actual Logic
+        for t_pointer in range(len(t)):
+            if s[s_pointer] == t[t_pointer]:
+                s_pointer += 1
+                if s_pointer == len(s):
+                    return True
+
+        return False
