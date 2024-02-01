@@ -1,0 +1,31 @@
+https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/submissions/1162727573?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        count = 0 
+        maxCount = 0
+        left = 0
+        numZero = 0
+        temp = 0
+
+        for right in range(len(nums)):
+            #Find first zero
+            if numZero == 0:
+                count += 1
+                if nums[right] == 0:
+                    temp = right
+                    numZero += 1
+            #Actual Logic
+            else:
+                if nums[right] == 0:
+                    count = count - ((temp - left) + 1)
+                    left = temp + 1
+                    temp = right
+                    count += 1
+                else:
+                    count += 1
+            print(count)
+            #Update maxCount
+            maxCount = max(count, maxCount)
+
+        return (maxCount - 1)
